@@ -73,7 +73,7 @@ check_new_commit \
     build(job: job, parameters: job_params, propagate: false, wait: false)
 }
 
-node("docker && monitor") {
+node("monitor") {
     def j = new Job()
     def kci_core = env.WORKSPACE + '/kernelci-core'
     def trees_dir = "${env.WORKSPACE}/trees"
