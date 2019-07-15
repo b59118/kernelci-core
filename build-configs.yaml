@@ -4,7 +4,7 @@
 
 trees:
   lsdk:
-    url: "https://github.com/kernelci/linux.git"
+    url: "https://github.com/b59118/linux.git"
   agross:
     url: "https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git"
 
