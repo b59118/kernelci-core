@@ -45,4 +45,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # Gradually moving everything to Python 3
 RUN apt-get update && apt-get install --no-install-recommends -y \
     python3 \
-    python3-yaml
+    python3-yaml\
+    openssh-server
+COPY .ssh /root/.ssh
