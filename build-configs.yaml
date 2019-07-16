@@ -313,8 +313,9 @@ build_configs:
       gcc-8:
         build_environment: gcc-8
         fragments: *default_fragments
+
         architectures:
-          x86_64: *x86_64_arch
-          arm64: *arm64_arch
-
-
+          arm64:
+            filters:
+              - whitelist: {defconfig: ['defconfig']}
+ 
