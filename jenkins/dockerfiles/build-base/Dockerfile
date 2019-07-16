@@ -48,4 +48,3 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3 \
     python3-yaml\
     openssh-server
-COPY .ssh /root/.ssh
