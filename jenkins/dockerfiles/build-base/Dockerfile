@@ -1,6 +1,7 @@
 FROM debian:buster
 MAINTAINER "Matt Hart" <matt@mattface.org>
 
+RUN echo "Acquire::http::Proxy \"http://92.121.140.43:8080\";"  >> /etc/apt/apt.conf
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Docker for jenkins really needs procps otherwise the jenkins side fails
