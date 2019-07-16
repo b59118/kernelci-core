@@ -4,7 +4,7 @@
 
 trees:
   lsdk:
-    url: "https://github.com/kernelci/linux.git"
+    url: "ssh://git@bitbucket.sw.nxp.com/dash/dash-lts.git"
   agross:
     url: "https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git"
 
@@ -308,7 +308,7 @@ build_configs:
 
   next:
     tree: lsdk
-    branch: 'master'
+    branch: 'linux-4.19'
     variants:
       gcc-8:
         build_environment: gcc-8
