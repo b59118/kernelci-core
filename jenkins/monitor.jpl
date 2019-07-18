@@ -83,7 +83,7 @@ node("monitor") {
     Storage:   ${params.KCI_STORAGE_URL}
     Container: ${docker_image}""")
 
-    j.dockerPullWithRetry(docker_image).inside('-v /home/jenkins/.ssh:/root/.ssh') {
+    j.dockerPullWithRetry(docker_image).inside('-v /home/jenkins/.ssh:/home/jenkins/.ssh -v /etc/passwd:/etc/passwd') {
         stage("Init") {
             timeout(time: 15, unit: 'MINUTES') {
                 j.cloneKciCore(
