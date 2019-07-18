@@ -237,7 +237,7 @@ node("build-trigger") {
     Config:    ${params.BUILD_CONFIG}
     Container: ${docker_image}""")
 
-    j.dockerPullWithRetry(docker_image).inside() {
+    j.dockerPullWithRetry(docker_image).inside('-v /home/jenkins/.ssh:/home/jenkins/.ssh -v /etc/passwd:/etc/passwd') {
         stage("Init") {
             timeout(time: 15, unit: 'MINUTES') {
                 j.cloneKciCore(
