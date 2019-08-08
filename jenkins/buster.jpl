@@ -14,14 +14,9 @@ def r = new RootFS()
 def config = [
     'name': "buster",
     'arch_list': [
-        "amd64",
         "arm64",
-        "armel",
         "armhf",
-        "i386",
-        "mips",
-        "mipsel",
-        "mips64el",
+
     ],
     'debian_release': "buster",
     'extra_packages': "",
