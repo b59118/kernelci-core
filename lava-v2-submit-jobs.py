@@ -69,6 +69,7 @@ def submit_jobs(connection):
                 device_type = lava.get_device_type_by_name(job_info['device_type'], all_device_types, all_aliases)
                 if device_type:
                     if device_type_has_available(device_type, all_devices):
+                        job_data = job_data.replace("device_type: %s"% job_info['device_type'], "device_type: %s"% device_type["name"])
                         print "Submitting job %s to device-type %s" % (job_info.get('job_name', 'unknown'), job_info['device_type'])
                         job_id = connection.scheduler.submit_job(job_data)
                         SUBMITTED[job] = job_id
