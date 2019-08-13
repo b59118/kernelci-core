@@ -5,7 +5,8 @@
 file_system_types:
 
   buildroot:
-    url: 'https://storage.kernelci.org/images/rootfs/buildroot/kci-2019.02-2-gefc755ba4a02'
+    #url: 'https://storage.kernelci.org/images/rootfs/buildroot/kci-2019.02-2-gefc755ba4a02'
+    url: 'http://10.192.208.141:8082/images/rootfs/buildroot/kci-2019.02-2-gefc755ba4a02'
 
     arch_map:
       arm64be: [{arch: arm64, endian: big}]
@@ -18,6 +19,7 @@ file_system_types:
     url: 'http://storage.kernelci.org/images/rootfs/debian'
     arch_map:
       armhf: [{arch: arm}]
+      arm64: [{arch: arm64}]
       amd64: [{arch: x86_64}]
 
 
@@ -41,15 +43,15 @@ file_systems:
 
   debian_buster_ramdisk:
     type: debian
-    ramdisk: 'buster/20190705.0/{arch}/rootfs.cpio.gz'
+    ramdisk: 'buster/20190726.0/{arch}/rootfs.cpio.gz'
 
   debian_buster-igt_ramdisk:
     type: debian
-    ramdisk: 'buster-igt/20190705.0/{arch}/rootfs.cpio.gz'
+    ramdisk: 'buster-igt/20190726.0/{arch}/rootfs.cpio.gz'
 
   debian_stretch-v4l2_ramdisk:
     type: debian
-    ramdisk: 'stretch-v4l2/20190705.0/{arch}/rootfs.cpio.gz'
+    ramdisk: 'stretch-v4l2/20190726.0/{arch}/rootfs.cpio.gz'
 
 
 test_plan_default_filters:
@@ -168,6 +170,12 @@ device_default_filters:
 
 
 device_types:
+
+  fsl-ls1046a-rdb:
+    name: 'fsl-ls1046a-rdb'
+    mach: freescale
+    class: arm64-dtb
+    boot_method: uboot
 
   alpine_db:
     name: 'alpine-db'
@@ -865,6 +873,11 @@ device_types:
       - blacklist: *allmodconfig_filter
       - blacklist: {defconfig: ['multi_v7_defconfig+CONFIG_SMP=n']}
 
+  sun50i-a64-bananapi-m64:
+    mach: allwinner
+    class: arm64-dtb
+    boot_method: uboot
+
   sun50i_h5_libretech_all_h3_cc:
     name: 'sun50i-h5-libretech-all-h3-cc'
     mach: allwinner
@@ -876,14 +889,29 @@ device_types:
     class: arm-dtb
     boot_method: uboot
 
+  sun7i-a20-cubieboard2:
+    mach: allwinner
+    class: arm-dtb
+    boot_method: uboot
+
   sun8i_a23_evb:
     name: 'sun8i-a23-evb'
     mach: allwinner
     class: arm-dtb
     boot_method: uboot
 
+  sun8i-a33-olinuxino:
+    mach: allwinner
+    class: arm-dtb
+    boot_method: uboot
+
   sun8i_a83t_allwinner_h8homlet_v2:
     name: 'sun8i-a83t-allwinner-h8homlet-v2'
+    mach: allwinner
+    class: arm-dtb
+    boot_method: uboot
+
+  sun8i-a83t-bananapi-m3:
     mach: allwinner
     class: arm-dtb
     boot_method: uboot
@@ -1002,313 +1030,6 @@ device_types:
 
 test_configs:
 
-  - device_type: alpine_db
-    test_plans: [boot]
 
-  - device_type: am57xx-beagle-x15
-    test_plans: [boot, boot_nfs, simple, sleep]
-
-  - device_type: apm_mustang
-    test_plans: [boot, boot_nfs, kselftest]
-
-  - device_type: apq8016_sbc
-    test_plans: [boot, kselftest]
-
-  - device_type: ar9331_dpt_module
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: armada_370_db
-    test_plans: [boot]
-
-  - device_type: armada_370_rd
-    test_plans: [boot]
-
-  - device_type: armada_375_db
-    test_plans: [boot]
-
-  - device_type: armada_385_db_ap
-    test_plans: [boot]
-
-  - device_type: armada_388_clearfog
-    test_plans: [boot]
-
-  - device_type: armada_388_gp
-    test_plans: [boot]
-
-  - device_type: armada_398_db
-    test_plans: [boot]
-
-  - device_type: armada_3720_db
-    test_plans: [boot]
-
-  - device_type: armada_7040_db
-    test_plans: [boot]
-
-  - device_type: armada_8040_db
-    test_plans: [boot]
-
-  - device_type: armada_xp_db
-    test_plans: [boot]
-
-  - device_type: armada_xp_gp
-    test_plans: [boot_nfs]
-
-  - device_type: armada_xp_linksys_mamba
-    test_plans: [boot]
-
-  - device_type: arndale
-    test_plans: [boot, kselftest]
-
-  - device_type: at91_sama5d2_xplained
-    test_plans: [boot]
-
-  - device_type: at91_sama5d4_xplained
-    test_plans: [boot]
-
-  - device_type: bcm2836_rpi_2_b
-    test_plans: [boot, sleep, usb]
-
-  - device_type: bcm2837_rpi_3_b
-    test_plans: [boot, kselftest, simple, usb]
-
-  - device_type: bcm2837_rpi_3_b_32
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: beaglebone_black
-    test_plans: [boot, boot_nfs, kselftest, simple]
-
-  - device_type: beagle_xm
-    test_plans: [boot, kselftest]
-
-  - device_type: chip
-    test_plans: [boot]
-
-  - device_type: chip_pro
-    test_plans: [boot]
-
-  - device_type: cubietruck
+  - device_type: fsl-ls1046a-rdb
     test_plans: [boot, boot_nfs]
-
-  - device_type: d03
-    test_plans: [boot]
-
-  - device_type: d05
-    test_plans: [boot, boot_nfs]
-
-  - device_type: da850_lcdk
-    test_plans: [boot]
-
-  - device_type: dra7_evm
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: dove_cubox
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: hikey_uboot
-    test_plans: [boot, boot_nfs, kselftest, simple]
-
-  - device_type: hsdk
-    test_plans: [boot]
-
-  - device_type: imx23_olinuxino
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx27_phycard_s
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx28_duckbill
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx53_qsrb
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx6dl_riotboard
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx6q_nitrogen6x
-    test_plans: [boot]
-
-  - device_type: imx6ul_pico_hobbit
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: imx6q_sabrelite
-    test_plans: [boot, boot_nfs, kselftest, sleep, usb]
-
-  - device_type: jetson_tk1
-    test_plans: [boot, boot_nfs, kselftest]
-
-  - device_type: kirkwood_db_88f6282
-    test_plans: [boot_nfs]
-
-  - device_type: meson-g12a-sei510
-    test_plans: [boot, simple]
-
-  - device_type: meson-g12a-x96-max
-    test_plans: [boot, simple]
-
-  - device_type: meson_gxbb_p200
-    test_plans: [boot, kselftest]
-
-  - device_type: meson_gxl_s805x_p241
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: meson_gxl_s905x_khadas_vim
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: meson_gxl_s905x_libretech_cc
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: meson-gxm-khadas-vim2
-    test_plans: [boot, kselftest, simple, boot_nfs]
-
-  - device_type: m3ulcb
-    test_plans: [boot, simple, usb]
-
-  - device_type: minnowboard_turbot_E3826
-    test_plans: [boot, simple]
-
-  - device_type: nanopi_k2
-    test_plans: [boot, kselftest, simple]
-
-  - device_type: nyan_big
-    test_plans: [boot, sleep, usb, igt_drm_kms, cros-ec]
-
-  - device_type: odroid_c1
-    test_plans: [boot, kselftest]
-
-  - device_type: odroid_c2
-    test_plans: [boot, kselftest]
-
-  - device_type: odroid_x2
-    test_plans: [boot, boot_nfs, kselftest]
-
-  - device_type: odroid_xu3
-    test_plans: [boot, boot_nfs, kselftest, sleep, usb, igt_drm_kms]
-
-  - device_type: openblocks_a7
-    test_plans: [boot, boot_nfs]
-
-  - device_type: openblocks_ax3
-    test_plans: [boot]
-
-  - device_type: orion5x_rd88f5182_nas
-    test_plans: [boot_nfs]
-
-  - device_type: ox820-cloudengines-pogoplug-series-3
-    test_plans: [boot, boot_nfs]
-
-  - device_type: panda
-    test_plans: [boot, kselftest]
-
-  - device_type: panda_es
-    test_plans: [boot, kselftest]
-
-  - device_type: peach_pi
-    test_plans: [boot, kselftest, sleep, usb, cros-ec]
-
-  - device_type: qcom_qdf2400
-    test_plans: [boot]
-
-  - device_type: qemu_arm
-    test_plans: [boot_qemu, simple_qemu, v4l2_compliance_qemu_vivid]
-
-  - device_type: qemu_arm64
-    test_plans: [boot_qemu, simple_qemu, v4l2_compliance_qemu_vivid]
-
-  - device_type: qemu_x86_64
-    test_plans: [boot_qemu, simple_qemu, v4l2_compliance_qemu_vivid]
-
-  - device_type: r8a7791_porter
-    test_plans: [boot]
-
-  - device_type: rk3399_gru_kevin
-    test_plans:
-      - baseline
-      - boot
-      - cros-ec
-      - v4l2_compliance_uvc
-
-  - device_type: rk3399_gru_kevin
-    test_plans: [igt_drm_kms]
-    filters:
-      - blacklist: {kernel: ['v3.', 'v4.4', 'v4.9', 'v4.14']}
-
-  - device_type: rk3399_puma_haikou
-    test_plans: [boot, kselftest]
-
-  - device_type: rk3288_rock2_square
-    test_plans: [boot, boot_nfs, kselftest, sleep, usb]
-
-  - device_type: rk3328_rock64
-    test_plans: [boot]
-
-  - device_type: rk3288_veyron_jaq
-    test_plans:
-      - baseline
-      - boot
-      - boot_nfs
-      - cros-ec
-      - igt_drm_kms
-      - sleep
-      - usb
-      - v4l2_compliance_uvc
-
-  - device_type: salvator_x
-    test_plans: [boot, boot_nfs, kselftest, simple]
-
-  - device_type: sinlinx_sina33
-    test_plans: [boot]
-
-  - device_type: socfpga_cyclone5_socrates
-    test_plans: [boot, boot_nfs, kselftest, sleep]
-
-  - device_type: snow
-    test_plans: [boot, boot_nfs, kselftest]
-
-  - device_type: sun50i_h5_libretech_all_h3_cc
-    test_plans: [boot]
-
-  - device_type: sun5i-a13-olinuxino-micro
-    test_plans: [boot]
-
-  - device_type: sun8i_a23_evb
-    test_plans: [boot]
-
-  - device_type: sun8i_a83t_allwinner_h8homlet_v2
-    test_plans: [boot]
-
-  - device_type: sun8i_h2_plus_orangepi_zero
-    test_plans: [boot]
-
-  - device_type: sun8i_h2_plus_orangepi_r1
-    test_plans: [boot]
-
-  - device_type: sun8i_h2_plus_libretech_all_h3_cc
-    test_plans: [boot]
-
-  - device_type: sun8i_h3_libretech_all_h3_cc
-    test_plans: [boot]
-
-  - device_type: sun8i_h3_orangepi_pc
-    test_plans: [boot]
-
-  - device_type: synquacer_acpi
-    test_plans: [boot]
-
-  - device_type: synquacer_dtb
-    test_plans: [boot]
-
-  - device_type: x86_atom330
-    test_plans: [boot, boot_nfs, kselftest, simple]
-
-  - device_type: x86_celeron
-    test_plans: [boot, boot_nfs, simple]
-
-  - device_type: x86_pentium4
-    test_plans: [boot, boot_nfs, simple]
-
-  - device_type: x86_x5_z8350
-    test_plans: [boot, boot_nfs]
-
-  - device_type: zynq_zc702
-    test_plans: [boot]
