@@ -71,7 +71,7 @@ def submit_jobs(connection):
                     if device_type_has_available(device_type, all_devices):
                         job_data = job_data.replace("device_type: %s"% job_info['device_type'], "device_type: %s"% device_type["name"])
                         print "Submitting job %s to device-type %s" % (job_info.get('job_name', 'unknown'), job_info['device_type'])
-                        print "job_data: %s" % job_data
+                        # print "job_data: %s" % job_data
                         job_id = connection.scheduler.submit_job(job_data)
                         SUBMITTED[job] = job_id
                     else:
