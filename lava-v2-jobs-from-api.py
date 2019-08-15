@@ -185,6 +185,7 @@ def get_job_params(config, test_config, defconfig, opts, build, plan):
 
 
 def add_jobs(jobs, config, tests, opts, build, plan, arch, defconfig):
+    print(locals())
     filters = {
         'arch': arch,
         'defconfig': defconfig,
