@@ -28,6 +28,7 @@ import requests
 import time
 import urllib
 import urlparse
+from pprint import pprint
 
 import kernelci.configs
 from lib import configuration
@@ -185,7 +186,22 @@ def get_job_params(config, test_config, defconfig, opts, build, plan):
 
 
 def add_jobs(jobs, config, tests, opts, build, plan, arch, defconfig):
-    print(locals())
+    pprint(jobs)
+    print("jobs\n"*3)
+    pprint(config)
+    print("config\n"*3)
+    pprint(tests)
+    print("tests\n"*3)    
+    pprint(opts)
+    print("opts\n"*3)
+    pprint(build)
+    print("buildn"*3)
+    pprint(plan)
+    print("plan\n"*3)
+    pprint(arch)
+    print("arch\n"*3)
+    pprint(defconfig)
+    print("defconfig\n"*3)        
     filters = {
         'arch': arch,
         'defconfig': defconfig,
