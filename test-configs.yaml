@@ -176,7 +176,7 @@ device_types:
     mach: freescale
     class: arm64-dtb
     boot_method: uboot
-    dtb: 'fsl-ls1046a-rdb-sdk.dtb'
+    dtb: 'freescale/fsl-ls1046a-rdb-sdk.dtb'
 
   alpine_db:
     name: 'alpine-db'
